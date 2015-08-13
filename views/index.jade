@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  if(!currentUser)
+    h1 Login
+    form(action="/login", method="post")
+      label(for="email") Email
+      input(type="text" id="email" name="email")
+      label(for="password") Password
+      input(type="password" id="password" name="password")
+      input(type="submit" value="Login")
+      
+    a(href="/signup") Sign-up
+  if (currentUser)
+    a(href="/trip/new") Create new trip 

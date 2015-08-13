@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+  h1 Create a new trip 
+  form(action="/trip/new", method="post")
+   label(for="name") Name of Trip 
+   input(type="text" name="name" id="id")
+   label(for="sdate") Start Date
+   input(type="date" name="sdate" id="sdate")
+   label(for="edate") End Date
+   input(type="date" name="edate" id="edate")
+   input(type="submit" value="Create Trip")

@@ -1,0 +1,11 @@
+extends ../layout
+
+
+block content
+  h1 Edit Info
+  form(action="/signup", method="post")
+   label(for="email") Email
+   input(type="text" id="email" name="email" value=user.email)
+   label(for="password") Password
+   input(type="password" id="password" name="password" value=user.password)
+   input(type="submit" value="Edit")

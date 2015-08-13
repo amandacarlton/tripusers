@@ -1,0 +1,13 @@
+extends ../layout
+
+block content
+  h1 Edit Trip
+  form(action="/trip/"+trip._id+"/edit", method="post")
+   label(for="name") Name of Trip 
+   input(type="text" name="name" id="id" value=trip.name)
+   label(for="sdate") Start Date
+   input(type="date" name="sdate" id="sdate" value=trip.startDate)
+   label(for="edate") End Date
+   input(type="date" name="edate" id="edate" value=trip.endDate)
+   input(type="submit" value="Edit Trip")
+  

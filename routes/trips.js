@@ -8,6 +8,10 @@ var dbQueries = require('../lib/dbqueries.js');
 router.get('/trip', function (req, res, next) {
   var userinfo = req.session.uId;
   dbQueries.userdashboard(userinfo).then(function (dashboard) {
+    dashboard.comments.forEach(function (comment) {
+      comment.date = dbQueries.dateParse(comment.date);
+      console.log(comment);
+    });
     res.render("trips/trip", {dashboard:dashboard});
   });
 });
@@ -34,7 +38,7 @@ router.get('/trip/:id', function (req, res, next) {
 
 router.post('/comment/:id', function (req, res, next) {
   var info = req.params.id;
-  var userinfo = req.session.id;
+  var userinfo = req.session.uId;
   var bodyinfo = req.body.comment;
   dbQueries.newcomment(info, userinfo, bodyinfo).then(function () {
     res.redirect("/trip/"+req.params.id);

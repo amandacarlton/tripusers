@@ -1,26 +1,34 @@
-extends ../layout
-
-block content
- div.direct
-   a(href="/user/edit") Edit User Info
-   p
-   a(href='/') Back Home
-   form(action="/logout", method="post")
-    input(type="submit" value = "logout")
- div.trips.plans
-   h1 Your Trips
-   for item in dashboard.places
-    a(href="/trip/"+item._id)
-     p=item.name
-   h1 Your Invited Trips
-   for item in dashboard.invites
-     a(href="/trip/"+item._id)
-      p=item.name
-   
- div.trips.comments
-   h1 Your Comments
-   for item in dashboard.comments
-    div.comment
-      p=item.message
-      p=item.date
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/main.css')
+    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Fjalla+One')
+  body
+   block content
+   div.layer
+     div.direct
+       a(href="/user/edit") Edit User Info
+       p
+       a(href='/') Back Home
+       p
+       form(action="/logout", method="post")
+        input(type="submit" value = "logout")
+     div.trips.plans
+       h1 Trips
+       for item in dashboard.places
+        a(href="/trip/"+item._id)
+         p=item.name
+       h1 Invited Trips
+       for item in dashboard.invites
+         a(href="/trip/"+item._id)
+          p=item.name
+       
+     div.trips.comments
+       h1 Comments
+       for item in dashboard.comments
+        div.comment
+          p=item.date
+          p=item.message
+        
  

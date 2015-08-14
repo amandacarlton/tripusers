@@ -1,17 +1,29 @@
-extends layout
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/main.css')
+    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Fjalla+One')
 
-block content
-  h1= title
-  p Welcome to #{title}
-  if(!currentUser)
-    h1 Login
-    form(action="/login", method="post")
-      label(for="email") Email
-      input(type="text" id="email" name="email")
-      label(for="password") Password
-      input(type="password" id="password" name="password")
-      input(type="submit" value="Login")
-      
-    a(href="/signup") Sign-up
-  if (currentUser)
-    a(href="/trip/new") Create new trip 
+  body
+   block content
+    div.layer
+      if(!currentUser)
+       div.log
+        h1 Login
+        form(action="/login", method="post")
+          label(for="email") Email
+          input(type="text" id="email" name="email")
+          p
+          label(for="password") Password
+          input(type="password" id="password" name="password")
+          p
+          input(type="submit" value="Login")
+          p
+        a(href="/signup") Sign-up
+      div.welcome
+       h1 Trip Start
+      if (currentUser)
+        a(href="/trip/new") Create new trip 
+        p
+        a(href="/trip") Your Info

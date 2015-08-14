@@ -14,7 +14,7 @@ router.get('/trip', function (req, res, next) {
 
 router.get('/trip/new', function (req, res, next) {
   res.render('trips/new');
-});
+  });
 
 
 router.post('/trip/new', function (req, res, next) {
@@ -80,4 +80,10 @@ router.post('/comment/:id/:trip', function (req, res, next) {
     res.redirect("/trip/"+req.params.trip);
   });
 });
+
+router.post('/logout', function(req, res, next) {
+  req.session=null;
+  res.redirect('/');
+});
+
 module.exports = router;

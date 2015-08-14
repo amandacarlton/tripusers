@@ -1,6 +1,7 @@
 extends ../layout
 
 block content
+  a(href="/") Back Home
   h1 Edit Trip
   form(action="/trip/"+trip._id+"/edit", method="post")
    label(for="name") Name of Trip 

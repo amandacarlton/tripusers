@@ -1,12 +1,18 @@
 extends ../layout
 
 block content
-  h1 Create a new trip 
-  form(action="/trip/new", method="post")
-   label(for="name") Name of Trip 
-   input(type="text" name="name" id="id")
-   label(for="sdate") Start Date
-   input(type="date" name="sdate" id="sdate")
-   label(for="edate") End Date
-   input(type="date" name="edate" id="edate")
-   input(type="submit" value="Create Trip")
+  header
+  a(href="/") Back Home
+  h1 Create a new trip
+  div.create 
+    form(action="/trip/new", method="post")
+     label(for="name") Name of Trip 
+     input(type="text" name="name" id="id")
+     p
+     label(for="sdate") Start Date
+     input(type="date" name="sdate" id="sdate")
+     p
+     label(for="edate") End Date
+     input(type="date" name="edate" id="edate")
+     p
+     input(type="submit" value="Create Trip")

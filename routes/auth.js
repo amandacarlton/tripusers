@@ -12,15 +12,17 @@ router.get("/signup", function (req, res, next) {
 });
 
 router.post("/signup" , function (req, res, next) {
-  var hash = bcrypt.hashSync(req.body.password, 8);
-  users.insert({email:req.body.email, password:hash}).then(function () {
+  var bodyinfo = req.body;
+  dbQueries.signup(bodyinfo)
+  .then(function () {
     res.redirect("/");
   });
 });
 
 
 router.post("/login", function (req, res, next) {
-  users.findOne({email:req.body.email}).then(function (data) {
+  var bodyinfo = req.body;
+  dbQueries.userlogin(bodyinfo).then(function (data) {
     if(data){
       req.session.user=data.email;
       req.session.uId=data._id;
@@ -42,8 +44,9 @@ router.post("/login", function (req, res, next) {
 
 router.get("/user/edit", function (req, res, next) {
   var userinfo = req.session.uId;
-  dbQueries.edituser(userinfo).then(function (user) {
-  res.render("users/edit", {user:user});
+  dbQueries.edituser(userinfo).then(function (person) {
+    console.log(person);
+    res.render("users/edit", {person:person});
   });
 });
 

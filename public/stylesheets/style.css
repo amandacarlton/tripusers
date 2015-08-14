@@ -3,13 +3,65 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
-}
+
 
 .comment{
   border: 1px solid black;
   display: inline-block;
   margin: 5px;
   padding: 20px;
+}
+
+label{
+  display: inline-block;
+  text-align: left;
+  width: 90px;
+
+}
+
+input{
+  margin-left: 10px;
+}
+
+body {
+  background: url('../images/brushed_alu.png');
+  text-align: center;
+  font-family: 'Fjalla One', sans-serif;
+}
+
+.create{
+
+}
+
+header{
+  background-position: blue;
+  height: 100px;
+}
+
+.trips{
+  float: left;
+
+}
+
+.direct{
+  display: inline-block;
+  padding:20px;
+  position:absolute;
+  right:10px;
+  color: white;
+  width:300px;
+}
+
+.comments{
+  width:700px;
+  margin-left: 100px;
+}
+
+.plans{
+  background-color: rgba(9, 77, 146, 0.6);
+  padding: 20px;
+}
+
+a {
+  color: white;
 }

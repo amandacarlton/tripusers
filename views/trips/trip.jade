@@ -1,17 +1,26 @@
 extends ../layout
 
 block content
- h1 Your Trips
- for item in dashboard.places
-  a(href="/trip/"+item._id)
-   p=item.name
- h1 Your Comments
- for item in dashboard.comments
-  div.comment
-    p=item.message
-    p=item.date
- h1 Your Invited Trips
- for item in dashboard.invites
-   a(href="/trip/"+item._id)
-    p=item.name
- a(href="/user/edit") Edit User Info
+ div.direct
+   a(href="/user/edit") Edit User Info
+   p
+   a(href='/') Back Home
+   form(action="/logout", method="post")
+    input(type="submit" value = "logout")
+ div.trips.plans
+   h1 Your Trips
+   for item in dashboard.places
+    a(href="/trip/"+item._id)
+     p=item.name
+   h1 Your Invited Trips
+   for item in dashboard.invites
+     a(href="/trip/"+item._id)
+      p=item.name
+   
+ div.trips.comments
+   h1 Your Comments
+   for item in dashboard.comments
+    div.comment
+      p=item.message
+      p=item.date
+ 

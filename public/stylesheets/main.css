@@ -5,8 +5,8 @@ label{
 
 }
 
-input{
-  margin-left: 10px;
+input textarea{
+  margin-left: 5px;
 }
 
 
@@ -107,6 +107,31 @@ a {
   width: 200px;
   height: 100px;
   border: 2px solid black;
+  background-color: rgba(252, 249, 249, 0.7);
+}
+
+.close{
+  position: relative;
+  margin-top: 0px;
+  align-self: right;
+}
+
+.name{
   color: white;
+  font-size: 4em;
+}
+
+.left{
+  float: left;
   background-color: rgba(9, 77, 146, 0.7);
+  color: white;
+  margin-top: 0px;
+  margin-left: 20px;
+  width: 300px;
+}
+
+.info{
+
+  float: right;
+  margin-right: 400px;
 }

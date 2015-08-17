@@ -78,6 +78,13 @@ router.post('/trip/:id/delete', function (req, res, next) {
   });
 });
 
+router.get('/comment/:id/:trip', function (req, res, next) {
+  var idinfo = req.params.id;
+  dbQueries.deletecomment(idinfo).then(function () {
+    res.redirect("/trip");
+  });
+});
+
 router.post('/comment/:id/:trip', function (req, res, next) {
   var idinfo = req.params.id;
   dbQueries.deletecomment(idinfo).then(function () {

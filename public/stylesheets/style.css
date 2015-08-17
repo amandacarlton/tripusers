@@ -1,6 +1,13 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: url(https://images.unsplash.com/photo-1437240443155-612416af4d5a?dpr=2&fit=crop&fm=jpg&h=1575&q=80&w=1050) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  text-align: center;
+  font-family: 'Fjalla One', sans-serif;;
+
+
 }
 
 

@@ -34,6 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 var setUserNameLocal = function (req, res, next) {
   res.locals.currentUser = req.session.user;
+  res.locals.currentId = req.session.uId
   next();
 };
 

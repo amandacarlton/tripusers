@@ -7,33 +7,36 @@ html
   body
    block content
     div.layer
+      div.direct
        a(href="/") Back Home
        p
        a(href="/trip") Your Info
-       div.info
+      div.info
          h1.name
           =show.trip.name
          p=show.trip.startDate
          p=show.trip.endDate
          for item in show.comments
           div.comment
-            form(action="/comment/"+item._id+"/"+item.tripId, method="post")
-              input.close(type="submit" value="X")
+            if(item.userId === currentId)
+              form(action="/comment/"+item._id+"/"+item.tripId, method="post")
+                input.close(type="submit" value="X")
             p=item.message
-       div.left  
+          
+      div.left  
          h1 Invited users
          for item in show.people
           p=item.email
          form(action="/comment/"+show.trip._id, method="post")
           p
           label(for="comment") comment
-          textarea(type="text" name="comment" id="comment")
+          textarea(type="text" name="comment" id="comment" required)
           p
           input(type="submit" value="Comment")
           p
          form(action="/invite/"+show.trip._id, method="post")
           label(for="invite") Invite a user
-          input(type="text" name="invite" id="invite")
+          input(type="text" name="invite" id="invite" required)
           p
           input(type="submit" value="invite")
           

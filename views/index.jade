@@ -1,29 +1,11 @@
-doctype html
-html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/main.css')
-    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Fjalla+One')
+extends layout
 
-  body
-   block content
-    div.layer
-      if(!currentUser)
-       div.log
-        h1 Login
-        form(action="/login", method="post")
-          label(for="email") Email
-          input(type="text" id="email" name="email")
-          p
-          label(for="password") Password
-          input(type="password" id="password" name="password")
-          p
-          input(type="submit" value="Login")
-          p
-        a(href="/signup") Sign-up
-      div.welcome
-       h1 Trip Start
-      if (currentUser)
-        a(href="/trip/new") Create new trip 
-        p
-        a(href="/trip") Your Info
+
+block content
+  if(!currentUser)
+  div.welcome
+   h1(style='font-size:8em') Trip Start
+  if (currentUser)
+    a.hp(href="/trip/new") Create new trip 
+    p
+    a.hp(href="/trip") Your Info

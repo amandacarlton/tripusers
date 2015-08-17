@@ -13,12 +13,12 @@ html
       h1 Create a new trip
       form(action="/trip/new", method="post")
        label(for="name") Name of Trip 
-       input(type="text" name="name" id="id")
+       input(type="text" name="name" id="id" required)
        p
        label(for="sdate") Start Date
-       input(type="date" name="sdate" id="sdate")
+       input(type="date" name="sdate" id="sdate" required)
        p
        label(for="edate") End Date
-       input(type="date" name="edate" id="edate")
+       input(type="date" name="edate" id="edate" required)
        p
        input(type="submit" value="Create Trip")

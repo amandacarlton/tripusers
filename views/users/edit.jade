@@ -2,11 +2,13 @@ extends ../layout
 
 
 block content
-  h1 Edit Info
-  
-  form(action="/signup", method="post")
+ div.create
+  h1.white Edit Info
+  form(action="/user/edit", method="post")
    label(for="email") Email
    input(type="text" id="email" name="email" value=person.email)
+   p
    label(for="password") Password
    input(type="password" id="password" name="password" value=person.password)
-   input(type="submit" value="Edit")
+   p
+   input.white(type="submit" value="Edit")

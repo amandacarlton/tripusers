@@ -9,6 +9,10 @@ input textarea{
   margin-left: 5px;
 }
 
+input[type="date"]{
+  width:135px;
+}
+
 
 body {
   background: url(https://images.unsplash.com/photo-1437240443155-612416af4d5a?dpr=2&fit=crop&fm=jpg&h=1575&q=80&w=1050) no-repeat center center fixed;
@@ -84,7 +88,8 @@ a{
 
 .comments{
   width:600px;
-  margin-left: 150px;
+  margin-left: 50px;
+  color: white;
 }
 
 .plans{
@@ -106,6 +111,7 @@ a {
   height: 100px;
   border: 2px solid black;
   background-color: rgba(252, 249, 249, 0.7);
+  color: black;
 }
 
 .close{
@@ -120,7 +126,6 @@ a {
 
 .left{
   float: left;
-  background-color: rgba(9, 77, 146, 0.7);
   color: white;
   margin-top: 50px;
   margin-left: 20px;
@@ -130,7 +135,7 @@ a {
 .info{
   width: 600px;
   float: right;
-  margin-right: 300px;
+  margin-right: 200px;
 }
 
 
@@ -140,4 +145,39 @@ a {
 
 .hp{
   font-size: 2em;
+}
+
+input[type="text"], input[type="date"], input[type="password"], textarea {
+  color: black;
+}
+
+input[type="submit"]{
+  background-color: black;
+}
+
+.close{
+  float: right;
+  background-color: red;
+}
+
+.newcom{
+  background-color: rgba(252, 249, 249, 0.7);
+  margin-top: 50px;
+  padding: 20px;
+  color: black;
+}
+
+.white{
+  color:white;
+}
+
+.users{
+  background-color: rgba(252, 249, 249, 0.7);
+  margin-top: 10px;
+  padding: 10px;
+  color: black;
+}
+
+.bottom{
+  margin-top: 0px;
 }

@@ -1,50 +1,47 @@
-doctype html
-html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/main.css')
-    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Fjalla+One')
-  body
-   block content
-    div.layer
-      div.direct
-       a(href="/") Back Home
-       p
-       a(href="/trip") Your Info
-      div.info
-         h1.name
-          =show.trip.name
-         p=show.trip.startDate
-         p=show.trip.endDate
-         for item in show.comments
-          div.comment
-            if(item.userId === currentId)
-              form(action="/comment/"+item._id+"/"+item.tripId, method="post")
-                input.close(type="submit" value="X")
-            p
-            Strong User Email: 
-            =item.userEmail
-            p
-            =item.message
-            
-      div.left  
-         h1 Invited users
-         for item in show.people
-          p=item.email
-         form(action="/comment/"+show.trip._id, method="post")
-          p
-          label(for="comment") comment
-          textarea(type="text" name="comment" id="comment" required)
-          p
-          input(type="submit" value="Comment")
-          p
-         form(action="/invite/"+show.trip._id, method="post")
-          label(for="invite") Invite a user
-          input(type="text" name="invite" id="invite" required)
-          p
-          input(type="submit" value="invite")
-          
+extends ../layout 
+
+block content
+  div.info
+     h1.name
+      =show.trip.name
+     p=show.trip.startDate
+     p=show.trip.endDate
+     for item in show.comments
+      div.comment
+        if(item.userId === currentId)
+          form(action="/comment/"+item._id+"/"+item.tripId, method="post")
+            input.close(type="submit" value="X")
+        p
+        Strong Poster Email: 
+        =item.userEmail
+        p
+        =item.message
+        
+  div.left  
+    div.users
+       h1 Invited users
+       for item in show.people
+        p=item.email
+        p
+       form(action="/invite/"+show.trip._id, method="post")
+        label(for="invite") Invite a user
+        input.white(type="text" name="invite" id="invite" required)
+        p
+        input.white(type="submit" value="Invite")
+    
+      if(show.trip.userId === currentId)  
+       div.users.bottom
+         p
          a(href="/trip/"+show.trip._id+"/edit") Edit Trip
-         
+         p
          form(action="/trip/"+show.trip._id+"/delete", method="post")
-          input(type="submit" value="Delete Trip")
+          input.white(type="submit" value="Delete Trip")
+    
+    div.newcom  
+      h1 Leave a Comment
+      form(action="/comment/"+show.trip._id, method="post")
+       p
+       label(for="comment") Comment
+       textarea(type="text" name="comment" id="comment" required)
+       p
+       input.white(type="submit" value="Comment")

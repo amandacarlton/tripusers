@@ -1,15 +1,7 @@
-doctype html
-html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/main.css')
-    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Fjalla+One')
-  body
-   block content
-   div.layer
-    
+extends ../layout 
+
+block content
     div.create
-      a(href="/") Back Home
       h1 Create a new trip
       form(action="/trip/new", method="post")
        label(for="name") Name of Trip 

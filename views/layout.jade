@@ -36,6 +36,41 @@ html
                   li(class="active")
                     a(href="/signup") Signup
                       span(class="sr-only") (current)
+      if(currentUser) 
+        nav(class="navbar navbar-inverse")
+          div(class="container-fluid container")
+            div(class="navbar-header")
+              button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false")
+                span(class="sr-only") Toggle navigation
+                span(class="icon-bar")
+                span(class="icon-bar")
+                span(class="icon-bar")
+              //- a(class="navbar-brand" href="/")
+              //-   img.menulogo(src='/images/logoYellow.png' alt='logo')
+            div(class="collapse navbar-collapse" id="bs-example-navbar-collapse-1")
+              ul(class="nav navbar-nav")
+                li(class="dropdown")
+                  a(href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") My Info
+                    span(class="caret")
+                  ul(class="dropdown-menu")
+                    li
+                      a(href="/trip") Dashboard
+                    li
+                      a(href="/user/edit") Edit User Info
+                li
+                  a(href="/") Home
+                    span(class="sr-only") (current)
+                li
+                  a(href="/trip/new") Create New Trip
+                    span(class="sr-only") (current)
+              div(class="collapse navbar-collapse" id="bs-example-navbar-collapse-1")
+                ul(class="nav navbar-right")
+                  li(class="active")
+                    a(href="/logout") Logout
+                      span(class="sr-only") (current)
+                  
+                    
+          
         .container.header
           block head
       main

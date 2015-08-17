@@ -1,12 +1,6 @@
-doctype html
-html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/main.css')
-    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Fjalla+One')
-  body
-   block content
-    div.layer
+extends ../layout 
+
+block content
       div.create
        h1 Sign UP
        form(action="/signup", method="post")
@@ -16,4 +10,4 @@ html
         label(for="password") Password
         input(type="password" id="password" name="password")
         p
-        input(type="submit" value="SignUp")
+        input.white(type="submit" value="SignUp")

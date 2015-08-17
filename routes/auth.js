@@ -49,4 +49,12 @@ router.get("/user/edit", function (req, res, next) {
   });
 });
 
+router.post("/user/edit", function (req, res, next) {
+  var userinfo = req.session.uId;
+  var bodyinfo = req.body;
+  dbQueries.updateUser(userinfo, bodyinfo).then(function (person) {
+    res.redirect('/trip');
+  });
+});
+
 module.exports = router;

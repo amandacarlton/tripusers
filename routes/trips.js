@@ -2,19 +2,40 @@ var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcrypt');
 var dbQueries = require('../lib/dbqueries.js');
-
-
+var db = require('monk')('localhost/tripusers');
+var users = db.get('users');
+var trips = db.get('trips');
 
 router.get('/trip', function (req, res, next) {
   var userinfo = req.session.uId;
   dbQueries.userdashboard(userinfo).then(function (dashboard) {
-    dashboard.comments.forEach(function (comment) {
-      comment.date = dbQueries.dateParse(comment.date);
-      console.log(comment);
-    });
-    res.render("trips/trip", {dashboard:dashboard});
+    if(dashboard.comments.length>0){
+      var promiseTrip = dashboard.comments.map(function (comment, i) {
+        return trips.findOne({_id:comment.tripId}).then(function (trip) {
+          dashboard.comments[i].tripName = trip.name;
+          dashboard.comments[i].newDate = dbQueries.dateParse(comment.date);
+        });
+      });
+      Promise.all(promiseTrip).then(function () {
+        res.render("trips/trip", {dashboard:dashboard});
+      });
+    }else{
+      res.render("trips/trip", {dashboard:dashboard});
+    }
   });
 });
+
+
+// router.get('/trip', function (req, res, next) {
+//   var userinfo = req.session.uId;
+//   dbQueries.userdashboard(userinfo).then(function (dashboard) {
+//     dashboard.comments.forEach(function (comment) {
+//       comment.date = dbQueries.dateParse(comment.date);
+//       console.log(comment);
+//     });
+//     res.render("trips/trip", {dashboard:dashboard});
+//   });
+// });
 
 router.get('/trip/new', function (req, res, next) {
   res.render('trips/new');
@@ -32,7 +53,18 @@ router.post('/trip/new', function (req, res, next) {
 router.get('/trip/:id', function (req, res, next) {
   var tripid = req.params.id;
   dbQueries.tripshow(tripid).then(function (show) {
-    res.render("trips/show", {show:show});
+    if(show.comments.length>0){
+      var promiseUser = show.comments.map(function (comment, i) {
+        return users.findOne({_id:comment.userId}).then(function (person) {
+          show.comments[i].userEmail = person.email;
+        });
+      });
+      Promise.all(promiseUser).then(function () {
+        res.render("trips/show", {show:show});
+      });
+    }else{
+      res.render("trips/show", {show:show});
+    }
   });
 });
 

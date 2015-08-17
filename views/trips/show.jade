@@ -21,8 +21,12 @@ html
             if(item.userId === currentId)
               form(action="/comment/"+item._id+"/"+item.tripId, method="post")
                 input.close(type="submit" value="X")
-            p=item.message
-          
+            p
+            Strong User Email: 
+            =item.userEmail
+            p
+            =item.message
+            
       div.left  
          h1 Invited users
          for item in show.people

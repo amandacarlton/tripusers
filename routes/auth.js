@@ -12,7 +12,9 @@ router.get("/signup", function (req, res, next) {
 router.post("/signup" , function (req, res, next) {
   var bodyinfo = req.body;
   dbQueries.signup(bodyinfo)
-  .then(function () {
+  .then(function (data) {
+    req.session.user=data.email;
+    req.session.uId=data._id;
     res.redirect("/");
   });
 });
@@ -43,7 +45,6 @@ router.post("/login", function (req, res, next) {
 router.get("/user/edit", function (req, res, next) {
   var userinfo = req.session.uId;
   dbQueries.edituser(userinfo).then(function (person) {
-    console.log(person);
     res.render("users/edit", {person:person});
   });
 });

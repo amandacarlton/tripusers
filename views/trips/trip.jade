@@ -29,7 +29,11 @@ html
        for item in dashboard.comments
         div.comment
           a.close(href="/comment/"+item._id+"/"+item.tripId) X
-          p=item.date
+          p=item.newDate
+          p
+          Strong Trip Name: 
+          =item.tripName
           p=item.message
+          
         
  

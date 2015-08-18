@@ -3,36 +3,26 @@ var router = express.Router();
 var bcrypt = require('bcrypt');
 var dbQueries = require('../lib/dbqueries.js');
 
-
+// TODO: in dbQueries return a promise that
+// yields the dashboard object (3 lines)
 router.get('/trip', function (req, res, next) {
-  var userinfo = req.session.uId;
-  dbQueries.userdashboard(userinfo).then(function (dashboard) {
-      if(dashboard.comments.length>0){
-      var promiseTrip = dashboard.comments.map(function (comment, i) {
-        return dbQueries.findTripByID(comment).then(function (trip) {
-          dashboard.comments[i].tripName = trip.name;
-          dashboard.comments[i].newDate = dbQueries.dateParse(comment.date);
-        });
+  dbQueries.userdashboard(req.session.uId).then(function (results) {
+    return dbQueries.getDashboardInfo(results);
+  }).then(function (dashboard) {
+    if(dashboard.comments.length){
+       dbQueries.getTrips(dashboard.comments).then(function (comments) {
+        dashboard.comments = comments;
       });
-      Promise.all(promiseTrip).then(function () {
-        res.render("trips/trip", {dashboard:dashboard});
-      });
-
-    }else{
+    }
       res.render("trips/trip", {dashboard:dashboard});
- }
+  });
 });
-});
-
 
 router.get('/trip/new', function (req, res, next) {
   res.render('trips/new');
   });
 
-
 router.post('/trip/new', function (req, res, next) {
-  console.log("**********");
-  console.log(req.body);
   var tripinfo = req.body;
   var userinfo = req.session.uId;
   dbQueries.newtrip(tripinfo, userinfo).then(function () {
@@ -79,7 +69,6 @@ router.post('/invite/:id', function (req, res, next) {
 router.get('/trip/:id/edit', function (req, res, next) {
   var idinfo = req.params.id;
   dbQueries.gettripedit(idinfo).then(function (trip) {
-    console.log(trip.startDate);
     res.render("trips/edit", {trip:trip});
   });
 });

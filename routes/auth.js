@@ -10,9 +10,7 @@ router.get("/signup", function (req, res, next) {
 });
 
 router.post("/signup" , function (req, res, next) {
-  var bodyinfo = req.body;
-  dbQueries.signup(bodyinfo)
-  .then(function (data) {
+  dbQueries.signup(req.body).then(function (data) {
     req.session.user=data.email;
     req.session.uId=data._id;
     res.redirect("/");
@@ -21,8 +19,7 @@ router.post("/signup" , function (req, res, next) {
 
 
 router.post("/login", function (req, res, next) {
-  var bodyinfo = req.body;
-  dbQueries.userlogin(bodyinfo).then(function (data) {
+  dbQueries.userlogin(req.body).then(function (data) {
     if(data){
       req.session.user=data.email;
       req.session.uId=data._id;
@@ -44,15 +41,13 @@ router.post("/login", function (req, res, next) {
 
 router.get("/user/edit", function (req, res, next) {
   var userinfo = req.session.uId;
-  dbQueries.edituser(userinfo).then(function (person) {
+  dbQueries.edituser(req.session.uId).then(function (person) {
     res.render("users/edit", {person:person});
   });
 });
 
 router.post("/user/edit", function (req, res, next) {
-  var userinfo = req.session.uId;
-  var bodyinfo = req.body;
-  dbQueries.updateUser(userinfo, bodyinfo).then(function (person) {
+  dbQueries.updateUser(req.session.uId, req.body).then(function (person) {
     res.redirect('/trip');
   });
 });

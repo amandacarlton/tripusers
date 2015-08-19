@@ -3,9 +3,9 @@ extends ../layout
 block content
   div.info
      h1.name
-      =show.trip.name
-     p=show.trip.startDate
-     p=show.trip.endDate
+      =show.places.name
+     p=show.places.startDate
+     p=show.places.endDate
      for item in show.comments
       div.comment
         if(item.userId === currentId)
@@ -20,26 +20,26 @@ block content
   div.left  
     div.users
        h1 Invited users
-       for item in show.people
+       for item in show.invites
         p=item.email
         p
-       form(action="/invite/"+show.trip._id, method="post")
+       form(action="/invite/"+show.places._id, method="post")
         label(for="invite") Invite a user
         input.white(type="text" name="invite" id="invite" required)
         p
         input.white(type="submit" value="Invite")
     
-      if(show.trip.userId === currentId)  
+      if(show.places.userId === currentId)  
        div.users.bottom
          p
-         a(href="/trip/"+show.trip._id+"/edit") Edit Trip
+         a(href="/trip/"+show.places._id+"/edit") Edit Trip
          p
-         form(action="/trip/"+show.trip._id+"/delete", method="post")
+         form(action="/trip/"+show.places._id+"/delete", method="post")
           input.white(type="submit" value="Delete Trip")
     
     div.newcom  
       h1 Leave a Comment
-      form(action="/comment/"+show.trip._id, method="post")
+      form(action="/comment/"+show.places._id, method="post")
        p
        label(for="comment") Comment
        textarea(type="text" name="comment" id="comment" required)

@@ -6,7 +6,7 @@ var dbQueries = require('../lib/dbqueries.js');
 // TODO: in dbQueries return a promise that
 // yields the dashboard object (3 lines)
 router.get('/trip', function (req, res, next) {
-  dbQueries.foo(req.session.uId).then(function (dashboard) {
+  dbQueries.populateDashboardInfo(req.session.uId).then(function (dashboard) {
     res.render("trips/trip", {dashboard:dashboard});
   });
 });
@@ -23,10 +23,8 @@ router.post('/trip/new', function (req, res, next) {
 
 
 router.get('/trip/:id', function (req, res, next) {
-  dbQueries.tripshow(req.params.id).then(function (tripInfo) {
-    return dbQueries.getEmails(tripInfo).then(function () {
-      res.render("trips/show", {show:tripInfo});
-    });
+  dbQueries.populateTripInfo(req.params.id).then(function (tripInfo) {
+    res.render("trips/show", {show:tripInfo});
   });
 });
 

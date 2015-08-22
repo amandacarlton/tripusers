@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcrypt');
 var dbQueries = require('../lib/dbqueries.js');
-var trip;
+
 // TODO: in dbQueries return a promise that
 // yields the dashboard object (3 lines)
 router.get('/trip', function (req, res, next) {
